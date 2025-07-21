@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RechargeStatut.com</title>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-size: 1.1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    h1 {
+      font-size: 2.4rem;
+    }
+    h2 {
+      font-size: 2.3rem;
+    }
+    h3 {
+      font-size: 1rem;
+    }
+    a {
+      text-decoration: none !important;
+    }
+    
+    .hero-section {
+      background-color:lightslategray;
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+    .accordion-button {
+      font-size: 1.1rem;
+    }
+    .accordion-body {
+      font-size: 1rem;
+    }
+
+    .selected-lang {
+        background-color: darkslategrey;
+        border: 1px solid #ccc;
+        padding: 8px 25px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    .lang-options {
+  position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        margin: 5px 0 0;
+        padding: 0;
+        list-style: none;
+        background-color: darkslategrey;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        display: none;
+        z-index: 10;
+}
+
+.lang-options li {
+  padding: 0.5rem 1rem;
+  color: #333333;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-options li:hover {
+        background-color: var(--text-color);
+      }
+.lang-options li:hover {
+  background-color: lightslategrey; /* un gris légèrement plus clair */
+}
+
+.selected-lang {
+  cursor: pointer;
+}
+
+.circle-counter-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background-color: #f8f8f8;
+}
+
+.circle-counter {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+}
+
+.progress-ring__circle {
+  transition: stroke-dashoffset 1.5s ease-out;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+
+
+.counter-label {
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  right: 0;
+  font-size: 14px;
+  color: #666;
+}
+.counter-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #333;
+}
+
+.counter-value span {
+  font-size: 2rem;
+  font-weight: bold;
+  display: block;
+}
+
+.counter-text {
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <header class="bg-dark text-white py-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <nav>
+        <a class="text-white me-3" href="#">Accueil</a>
+        <a class="text-white me-3" href="#galerie">Galerie</a>
+        <a class="text-white" href="#faq">FAQ</a>
+      </nav>
+      <div class="custom-language-selector position-relative">
+        <div class="selected-lang d-flex align-items-center cursor-pointer" onclick="toggleLangMenu()">
+          <img src="https://flagcdn.com/w20/gb.png" alt="EN">
+          <span class="ms-2">English</span>
+        </div>
+        <ul class="lang-options list-unstyled position-absolute border shadow " style="display: none;">
+          <li class="cursor-pointer" onclick="setLang('en')">
+            <img src="https://flagcdn.com/w20/gb.png" alt="EN"> English
+          </li>
+          <li class="cursor-pointer" onclick="setLang('fr')">
+            <img src="https://flagcdn.com/w20/fr.png" alt="FR"> Français
+          </li>
+          <li class="cursor-pointer" onclick="setLang('es')">
+            <img src="https://flagcdn.com/w20/es.png" alt="ES"> Español
+          </li>
+          <li class="cursor-pointer" onclick="setLang('de')">
+            <img src="https://flagcdn.com/w20/de.png" alt="DE"> Deutsch
+          </li>
+          <li class="cursor-pointer" onclick="setLang('it')">
+            <img src="https://flagcdn.com/w20/it.png" alt="IT"> Italiano
+          </li>
+          <li class="cursor-pointer" onclick="setLang('pt')">
+            <img src="https://flagcdn.com/w20/pt.png" alt="PT"> Português
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-wrapper">
+    <section class="hero-section text-center">
+      <div class="container">
+        <h1 data-i18n="hero_title">Bienvenue sur RechargeStatut.com</h1>
+        <p data-i18n="hero_text">Vérifiez rapidement l’authenticité de vos tickets, cartes ou codes d’achat. Notre système vous informe instantanément si le code a déjà été utilisé ou non.</p>
+        <a href="#galerie" class="btn btn-primary mt-3" data-i18n="hero_link">Découvrir nos offres</a>
+      </div>
+    </section>
+
+    
+
+<section id="galerie" class="gallery py-5">
+  <div class="container">
+    <h2 class="text-center mb-4"></h2>
+    <div class="row g-3">
+      <div class="col-12 col-sm-6 col-md-4">
+        <a href="form.html"><img class="img-fluid rounded shadow w-100" src="img/transcash.png" alt="Transcash"></a>
+      </div>
+      
+      <div class="col-12 col-sm-6 col-md-4">
+        <a href="form.html"><img class="img-fluid rounded shadow w-100" src="img/pcs.png" alt="PCS"></a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4">
+        <a href="form.html"><img class="img-fluid rounded shadow w-100" src="img/neosurf.jpg" alt="Neosurf"></a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4">
+        <a href="form.html"><img class="img-fluid rounded shadow w-100" src="img/steam.jpg" alt="Steam"></a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4">
+        <a href="form.html"><img class="img-fluid rounded shadow w-100" src="img/google_play.jpg" alt="Google Play"></a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4">
+        <a href="form.html"><img class="img-fluid rounded shadow w-100" src="img/PaySafeCard.jpg" alt="Paysafe Card"></a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4">
+        <a href="form.html"><img class="img-fluid rounded shadow w-100" src="img/Amazon.jpg" alt="Amazon"></a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4">
+        <a href="form.html"><img class="img-fluid rounded shadow w-100" src="img/Playstation_store.jpg" alt="Playstation store"></a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4">
+        <a href="form.html"><img class="img-fluid rounded shadow w-100" src="img/carte-itunes.jpg" alt="iTunes"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <section id="faq" class="faq py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4">FAQ</h2>
+    <div class="accordion" id="faqAccordion">
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            <span data-i18n="faq1">Qu'est-ce qu’un ticket de recharge ou un ticket prépayé ?</span>
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body fs-5" data-i18n="faq1r">
+            C’est un code prépayé utilisé comme moyen de paiement. Il fonctionne sans compte bancaire. Pratique pour les achats en ligne sécurisés.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            <span data-i18n="faq2">Comment fonctionne la vérification d’un ticket ?</span>
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body fs-5" data-i18n="faq2r">
+            Entrez votre code dans le champ prévu. Le système vérifie s’il a déjà été utilisé. Vous recevez une réponse par email en quelques secondes.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+            <span data-i18n="faq3">Quels types de tickets puis-je vérifier ici ?</span>
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body fs-5" data-i18n="faq3r">
+            Vous pouvez vérifier les tickets comme Transcash, PCS, Neosurf, etc. Les cartes cadeau comme Google Play ou Amazon sont aussi prises en charge. La liste est régulièrement mise à jour.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+            <span data-i18n="faq4">Comment recevoir un email de confirmation ?</span>
+          </button>
+        </h2>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body fs-5" data-i18n="faq4r">
+            Indiquez une adresse email valide lors de la vérification. Vous recevrez automatiquement un message. Il vous informe du statut de votre ticket.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+ <!-- </section>
+<section class="circle-counter-section">
+  <div class="circle-counter">
+    <svg class="progress-ring" width="150" height="150">
+      <circle
+        class="progress-ring__circle"
+        stroke="#ff5722"
+        stroke-width="10"
+        fill="transparent"
+        r="65"
+        cx="75"
+        cy="75"
+      />
+    </svg>
+    <div class="counter-value" id="circleCounterWrapper">
+      <span id="circleCounter">0</span><br>
+      <p class="counter-text">nous font confiance</p>
+    </div>
+  </div>
+</section> -->
+
+
+
+  </main>
+
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container text-center">
+      <div class="mb-2">
+        <a href="#galerie" class="text-white me-3" data-i18n="footer_galerie">Galerie</a>
+        <a href="#faq" class="text-white me-3" data-i18n="footer_faq">FAQ</a>
+        <a href="#contact" class="text-white" data-i18n="footer_contact">Contact</a>
+      </div>
+      <h3 class="mb-0" data-i18n="footer_copyright">&copy; 2025 RechargeStatut.com Tous droits réservés.</h3>
+    </div>
+  </footer>
+
+  <script src="bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+  const circle = document.querySelector('.progress-ring__circle');
+  const radius = circle.r.baseVal.value;
+  const circumference = 2 * Math.PI * radius;
+
+  circle.style.strokeDasharray = `${circumference} ${circumference}`;
+  circle.style.strokeDashoffset = circumference;
+
+  const counterEl = document.getElementById("circleCounter");
+  const textEl = document.getElementById("counterText");
+  const target = 2000;
+  const duration = 2000;
+  const steps = 100;
+  const increment = target / steps;
+  const interval = duration / steps;
+
+  let current = 0;
+  let step = 0;
+
+  const animate = setInterval(() => {
+    step++;
+    current += increment;
+
+    if (step >= steps) {
+      current = target;
+      clearInterval(animate);
+
+      // 👉 Affiche le texte à la fin avec classe visible
+      textEl.classList.add('visible');
+    }
+
+    counterEl.textContent = "+" + Math.round(current);
+
+    const percent = current / target;
+    const offset = circumference - percent * circumference;
+    circle.style.strokeDashoffset = offset;
+  }, interval);
+});
+
+  </script>
+
+
+ 
+</body>
+</html>

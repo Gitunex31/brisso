@@ -11,6 +11,34 @@
       font-size: 1.1rem;
       font-family: 'Poppins', sans-serif;
     }
+      /* S'assure que tout prend la hauteur totale de l'écran */
+  html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    header, footer {
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #f0f0f0;
+      padding: 2rem;
+    }
     h1 {
       font-size: 2.4rem;
     }
